@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
-    "prepare": "cd .. && husky front/.husky"
+    "prepare": "cd .. && husky webapp/.husky"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
@@ -94,5 +94,8 @@
   },
   "lint-staged": {
     "*.js,*.ts,*.jsx,*.tsx": "eslint --cache --fix"
+  },
+  "volta": {
+    "node": "20.13.1"
   }
 }
