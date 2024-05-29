@@ -3,7 +3,7 @@ import pyodbc
 
 app = Flask(__name__)
 
-conn_str = 'Driver={ODBC Driver 18 for SQL Server};Server=tcp:mia10.database.windows.net,1433;Database=mia10_db;Uid=serverAd;Pwd=l@24j9Z,VR"D1x:0;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+conn_str = 'Driver={ODBC Driver 18 for SQL Server};Server=tcp:mia10.database.windows.net,1433;Database=mia10_db;Uid=user_reader;Pwd=7R&o&o4#~756^z;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 conn = pyodbc.connect(conn_str)
 
 @app.route('/')
