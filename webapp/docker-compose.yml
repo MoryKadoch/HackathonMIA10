@@ -7,8 +7,10 @@ services:
       context: .
     environment:
       - HOST=0.0.0.0
+      - PORT=3333
+      - LOG_LEVEL=info
+      - APP_KEY=1LX44LT48f7sdf4KCUJpQG9g7IM
       - NODE_ENV=production
-    env_file:
-      - .env
+      - SESSION_DRIVER=cookie
     ports:
       - 3333:3333
