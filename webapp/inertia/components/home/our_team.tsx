@@ -25,13 +25,12 @@ const TeamList = styled(UnstyledList)({
 });
 
 const Name = styled.p({
-  fontSize: '1.2rem',
   fontWeight: 500,
 });
 
 const OurTeam = () => (
   <div>
-    <h2>Our team</h2>
+    <h2>Notre équipe</h2>
     <TeamList>
       {TEAM_MEMBERS.map(({ name, avatarUrl, networks }) => (
         <li

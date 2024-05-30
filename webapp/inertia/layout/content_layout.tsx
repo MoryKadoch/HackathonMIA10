@@ -19,7 +19,6 @@ const ContentLayoutStyle = styled(TransitionLayout)({
   '& main': {
     marginTop: '3em',
     display: 'flex',
-    gap: '2em',
     flex: 1,
     flexDirection: 'column',
   },

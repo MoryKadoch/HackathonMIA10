@@ -11,7 +11,7 @@ const FooterStyle = styled.footer({
 });
 
 const Footer = ({ className }: { className?: string }) => (
-  <FooterStyle className={className}>Project by team MIA10</FooterStyle>
+  <FooterStyle className={className}>Projet par l'équipe MIA10</FooterStyle>
 );
 
 export default Footer;
