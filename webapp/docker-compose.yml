@@ -1,0 +1,14 @@
+name: hackathon-mia10
+services:
+  hackathon-mia10:
+    container_name: hackathon-mia10
+    restart: always
+    build:
+      context: .
+    environment:
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+    env_file:
+      - .env
+    ports:
+      - 3333:3333
