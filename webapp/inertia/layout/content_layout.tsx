@@ -1,10 +1,12 @@
 import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
+import Footer from '~/components/common/footer';
 import Navbar from '~/components/common/navbar';
 import TransitionLayout from '~/layout/_transition_layout';
 import cssReset from '~/styles/css_reset';
 import documentStyle from '~/styles/document';
+import { tableStyle } from '~/styles/table';
 
 const ContentLayoutStyle = styled(TransitionLayout)({
   height: '100%',
@@ -15,7 +17,11 @@ const ContentLayoutStyle = styled(TransitionLayout)({
   flexDirection: 'column',
 
   '& main': {
+    marginTop: '3em',
+    display: 'flex',
+    gap: '2em',
     flex: 1,
+    flexDirection: 'column',
   },
 });
 
@@ -27,10 +33,10 @@ const ContentLayout = ({
   className?: string;
 }) => (
   <ContentLayoutStyle className={className}>
-    <Global styles={[cssReset, documentStyle]} />
+    <Global styles={[cssReset, documentStyle, tableStyle]} />
     <Navbar />
     <main>{children}</main>
-    {/* <Footer /> */}
+    <Footer />
   </ContentLayoutStyle>
 );
 

@@ -4,12 +4,10 @@ import { hydrateRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from '@adonisjs/inertia/helpers';
 
-const appName = import.meta.env.VITE_APP_NAME || 'AdonisJS';
-
 createInertiaApp({
   progress: { color: '#5468FF' },
 
-  title: (title) => `${title} - ${appName}`,
+  title: (title) => `${title} - Hackaton MIA10`,
 
   resolve: (name) => {
     return resolvePageComponent(
