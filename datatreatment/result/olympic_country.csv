@@ -1,0 +1,156 @@
+country_name,country_code,country_id
+Sweden,SE,1
+Indonesia,ID,2
+United Arab Emirates,AE,3
+Azerbaijan,AZ,4
+Slovenia,SI,5
+Iraq,IQ,6
+Australia,AU,7
+Pakistan,PK,8
+Hungary,HU,9
+Montenegro,ME,10
+Israel,IL,11
+United Republic of Tanzania,TZ,12
+Czechoslovakia,CSHH,13
+Poland,PL,14
+Tajikistan,TJ,15
+Gabon,GA,16
+Vietnam,VN,17
+Norway,NO,18
+People's Republic of China,CN,19
+Republic of Korea,KR,20
+Colombia,CO,21
+Togo,TG,22
+Luxembourg,LU,23
+Ireland,IE,24
+Ecuador,EC,25
+Cyprus,CY,26
+Russian Federation,RU,27
+Thailand,TH,28
+Germany,DE,29
+Niger,NE,30
+Costa Rica,CR,31
+Switzerland,CH,32
+Malaysia,MY,33
+Jamaica,JM,34
+Estonia,EE,35
+Ukraine,UA,36
+Serbia,RS,37
+Suriname,SR,38
+Trinidad and Tobago,TT,39
+Samoa,WS,40
+Mauritius,MU,41
+"Virgin Islands, US",VI,42
+Saudi Arabia,SA,43
+Grenada,GD,44
+Sudan,SD,45
+Cuba,CU,46
+Puerto Rico,PR,47
+Burkina Faso,BF,48
+Iceland,IS,49
+Czech Republic,CZ,50
+New Zealand,NZ,51
+Zambia,ZM,52
+Sri Lanka,LK,53
+France,FR,54
+Philippines,PH,55
+Brazil,BR,56
+Jordan,JO,57
+Zimbabwe,ZW,58
+Nigeria,NG,59
+Armenia,AM,60
+Netherlands,NL,61
+Singapore,SG,62
+Kosovo,XK,63
+Algeria,DZ,64
+Barbados,BB,65
+C�te d'Ivoire,CI,66
+Syrian Arab Republic,SY,67
+Guatemala,GT,68
+Chile,CL,69
+Turkey,TR,70
+United States of America,US,71
+Belgium,BE,72
+Ghana,GH,73
+Liechtenstein,LI,74
+Panama,PA,75
+German Democratic Republic (Germany),DDDE,76
+Kuwait,KW,77
+Venezuela,VE,78
+Serbia and Montenegro,CSXX,79
+Senegal,SN,80
+Canada,CA,81
+Kazakhstan,KZ,82
+Bulgaria,BG,83
+Greece,GR,84
+Mexico,MX,85
+Qatar,QA,86
+Latvia,LV,87
+Chinese Taipei,TW,88
+Republic of Moldova,MD,89
+Italy,IT,90
+Romania,RO,91
+ROC,ROC,92
+Democratic People's Republic of Korea,KP,93
+Austria,AT,94
+Afghanistan,AF,95
+South Africa,ZA,96
+Fiji,FJ,97
+Kyrgyzstan,KG,98
+Tunisia,TN,99
+Turkmenistan,TM,100
+Georgia,GE,101
+Ethiopia,ET,102
+Haiti,HT,103
+Lithuania,LT,104
+Bermuda,BM,105
+Tonga,TO,106
+Uzbekistan,UZ,107
+Eritrea,ER,108
+Uruguay,UY,109
+Finland,FI,110
+Islamic Republic of Iran,IR,111
+Netherlands Antilles,AN,112
+Peru,PE,113
+Morocco,MA,114
+Mozambique,MZ,115
+Mongolia,MN,116
+Paraguay,PY,117
+Denmark,DK,118
+Cameroon,CM,119
+Bahamas,BS,120
+Dominican Republic,DO,121
+Japan,JP,122
+Portugal,PT,123
+Yugoslavia,YUCS,124
+Belarus,BY,125
+India,IN,126
+Spain,ES,127
+Slovakia,SK,128
+Croatia,HR,129
+Kenya,KE,130
+Great Britain,GB,131
+Egypt,EG,132
+Guyana,GY,133
+Uganda,UG,134
+Djibouti,DJ,135
+Independent Olympic Athletes,IOA,136
+Federal Republic of Germany,DE,137
+Bahrain,BH,138
+Botswana,BW,139
+San Marino,SM,140
+"Hong Kong, China",HK,141
+Burundi,BI,142
+North Macedonia,MK,143
+Argentina,AR,144
+Soviet Union,,145
+Bohemia,,146
+Olympic Athletes from Russia,,147
+Australasia,,148
+Trinidad and Tobago,,149
+Namibia,,150
+Unified Team,,151
+Lebanon,,152
+MIX,,153
+United Arab Republic,,154
+West Indies Federation,,155
