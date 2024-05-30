@@ -19,7 +19,7 @@ const Hero = styled.div({
 
 const HeroImage = styled.img({
   height: 'auto',
-  width: '45%',
+  width: '65%',
 
   [`@media (max-width: ${media.mobile})`]: {
     width: '85%',
@@ -31,9 +31,9 @@ export default function HomePage() {
     <ContentLayout>
       <Head title="Homepage" />
       <Hero>
-        <HeroImage src="/assets/jo_2024.webp" />
+        <HeroImage src="/assets/jo_2024.png" />
       </Hero>
-      <div css={{ marginTop: '1rem', textAlign: 'center' }}>
+      <div css={{ marginTop: '3rem', textAlign: 'center' }}>
         <ButtonLink
           css={{ marginRight: '.25em' }}
           href={route('predictions').url}
