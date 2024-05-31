@@ -22,6 +22,10 @@ const cssReset = css({
     color: 'purple',
     textDecoration: 'none',
     borderBottom: '1px solid transparent',
+
+    '&:hover': {
+      textDecoration: 'underline',
+    },
   },
 
   b: {
@@ -32,6 +36,19 @@ const cssReset = css({
   'h1, h2, h3, h4, h5, h6': {
     fontWeight: '500',
     color: 'purple',
+    marginBottom: '0.5rem',
+  },
+
+  h1: {
+    fontSize: '2em',
+  },
+
+  h2: {
+    fontSize: '1.75em',
+  },
+
+  h3: {
+    fontSize: '1.5em',
   },
 
   kbd: {
