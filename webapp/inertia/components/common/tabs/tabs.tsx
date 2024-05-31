@@ -28,7 +28,9 @@ export default function Tabs({ tabs }: { tabs: Tab[] }) {
           </TabItem>
         ))}
       </TabList>
-      <TabPanel>{tabs[activeTabIndex].content}</TabPanel>
+      <TabPanel key={tabs[activeTabIndex].title}>
+        {tabs[activeTabIndex].content}
+      </TabPanel>
     </div>
   );
 }
