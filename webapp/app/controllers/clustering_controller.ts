@@ -3,19 +3,19 @@ import { inject } from '@adonisjs/core';
 import type { HttpContext } from '@adonisjs/core/http';
 
 @inject()
-export default class AnalysisController {
+export default class ClusteringController {
   constructor(protected restController: RestsController) {}
 
   async index({ inertia }: HttpContext) {
-    const dataAnalysis = await this.analysis();
+    const data = await this.clustering();
 
-    return inertia.render('analysis', {
-      dataAnalysis
+    return inertia.render('clustering', {
+      data
     });
   }
 
-  protected async analysis() {
-    let data = await this.restController.makeRequest({ path: '/analysis' });
+  protected async clustering() {
+    let data = await this.restController.makeRequest({ path: '/clustering' });
 
     return data;
   }

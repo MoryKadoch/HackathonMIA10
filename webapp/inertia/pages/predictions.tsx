@@ -1,42 +1,34 @@
+import type PredictionController from '@/app/controllers/prediction_controller';
+import { InferPageProps } from '@adonisjs/inertia/types';
 import { Head } from '@inertiajs/react';
 import { Bar } from 'react-chartjs-2';
 import Tabs, { Tab } from '~/components/common/tabs/tabs';
 import ContentLayout from '~/layout/content_layout';
 import { generateSectionGraphOptions } from '~/lib/generate_chart_options';
 
-export default function MedalsPage() {
+type PredictionPageProps = InferPageProps<PredictionController, 'index'>;
+
+export default function PredictionsPage({
+  allPrediction
+}: PredictionPageProps) {
   const opts = generateSectionGraphOptions({ title: 'Predictions' });
-  const labels = Array(10)
-    .fill(null)
-    .map((_, index) => `Label ${index}`);
-  const data = {
-    labels,
-    datasets: [
-      {
-        data: Array(10)
-          .fill(null)
-          .map(() => Math.random() * 100),
-        label: 'yes',
-      },
-    ],
-  };
 
   const tabs: Tab[] = [
     {
-      title: 'Modèle IA 1',
-      content: <Bar options={opts} data={data} />,
+      title: 'Modèle Random Forest',
+      content: <Bar options={opts} data={allPrediction.data_rf} />,
     },
     {
-      title: 'Modèle IA 2',
-      content: <Bar options={opts} data={data} />,
+      title: 'Modèle MLP',
+      content: <Bar options={opts} data={allPrediction.data_mlp} />,
     },
     {
-      title: 'Modèle IA 3',
-      content: <Bar options={opts} data={data} />,
+      title: 'Modèle SVM',
+      content: <Bar options={opts} data={allPrediction.data_svr} />,
     },
     {
-      title: 'Modèle IA 4',
-      content: <Bar options={opts} data={data} />,
+      title: 'Modèle pondéré',
+      content: <Bar options={opts} data={allPrediction.data_ensemble} />,
     },
   ];
   return (

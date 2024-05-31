@@ -3,19 +3,19 @@ import { inject } from '@adonisjs/core';
 import type { HttpContext } from '@adonisjs/core/http';
 
 @inject()
-export default class AnalysisController {
+export default class PredictionController {
   constructor(protected restController: RestsController) {}
 
   async index({ inertia }: HttpContext) {
-    const dataAnalysis = await this.analysis();
+    const allPrediction = await this.predict();
 
-    return inertia.render('analysis', {
-      dataAnalysis
+    return inertia.render('predictions', {
+      allPrediction
     });
   }
 
-  protected async analysis() {
-    let data = await this.restController.makeRequest({ path: '/analysis' });
+  protected async predict() {
+    let data = await this.restController.makeRequest({ path: '/predict' });
 
     return data;
   }
