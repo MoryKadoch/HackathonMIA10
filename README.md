@@ -1,12 +1,14 @@
 # HackathonMIA10
 
-Pour lancer l'API et la WebApp via docker
+Pour lancer toute la stack docker
 
 ```shell
 make prod
 # ou
 docker compose up -d --build
 ```
+
+En cas de problème, vous pouvez toujours naviguer dans l'arborescence et lancer le docker-compose qui vous intéresse.
 
 ### Liens
 
