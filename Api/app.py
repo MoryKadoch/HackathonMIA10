@@ -3,7 +3,6 @@ import pyodbc
 
 import numpy as np
 import pandas as pd
-import optuna
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.ensemble import RandomForestRegressor
@@ -11,7 +10,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 
 from sklearn.cluster import KMeans
-import seaborn as sns
 from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
 from sklearn.mixture import GaussianMixture
 from sklearn.cluster import DBSCAN
@@ -22,9 +20,21 @@ from sklearn.neural_network import MLPRegressor
 import joblib
 import json
 
+import os
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+DB_DB = os.getenv('DB_DB')
+DB_USER = os.getenv('DB_USER')
+DB_PWD = os.getenv('DB_PWD')
+DB_DRIVER = os.getenv('DB_DRIVER')
+
 app = Flask(__name__)
 
-conn_str = 'Driver={ODBC Driver 18 for SQL Server};Server=tcp:mia10.database.windows.net,1433;Database=mia10_db;Uid=user_reader;Pwd=7R&o&o4#~756^z;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+# TODO: put credentials in .env
+
+DRIVER = 'Driver={ODBC Driver 18 for SQL Server}'
+
+conn_str = f'{DRIVER};Server=tcp:{DB_HOST},{DB_PORT};Database={DB_DB};Uid={DB_USER};Pwd={DB_PWD};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 conn = pyodbc.connect(conn_str)
 
 @app.route('/')
@@ -289,7 +299,7 @@ def clustering():
     kmeans = KMeans(n_clusters=3, random_state=0, n_init=10)
     medal_counts['Cluster'] = kmeans.fit_predict(medal_counts_scaled)
 
-    outlier_threshold = 2.5 
+    outlier_threshold = 2.5
     outliers = medal_counts[medal_counts['total_medals'] > outlier_threshold * medal_counts['total_medals'].std()]
 
     medal_counts_no_outliers = medal_counts[~medal_counts['country_name'].isin(outliers['country_name'])]
@@ -308,7 +318,7 @@ def clustering():
 
     winter_olympics = df_combined[df_combined['game_season'] == 'Winter']
     winter_clusters = perform_clustering(winter_olympics)
-    
+
 
     # GMM
     medal_counts_gmm = df.groupby('country_name').agg(
@@ -516,18 +526,18 @@ def predict_medals_next_edition(country, model, scaler, data, encoder, time_step
     # encodage du pays
     country_encoded = encoder.transform([[country]])
     country_encoded_df = pd.DataFrame(country_encoded, columns=encoder.get_feature_names_out(['country_name']))
-    
+
     # Sélectionner les données du pays
     country_data = data[data['country_name'] == country].sort_values(by='slug_game').iloc[-time_steps:, 2:]
     country_data = pd.concat([country_data.reset_index(drop=True), country_encoded_df], axis=1)
-    
+
     if country_data.shape[0] < time_steps:
         raise ValueError(f"Not enough data for {country} to create a prediction with {time_steps} time steps.")
-    
+
     # Standardiser les données
     expected_features = scaler.n_features_in_
     current_features = country_data.shape[1]
-    
+
     if current_features < expected_features:
         # ajout des 0 si nécessaire
         missing_features = expected_features - current_features
@@ -537,10 +547,10 @@ def predict_medals_next_edition(country, model, scaler, data, encoder, time_step
         country_data = country_data.iloc[:, :expected_features]
 
     country_data = scaler.transform(country_data)
-    
+
     # aplatir les données
     country_data = country_data.reshape(1, -1)
-    
+
     predicted_medals = model.predict(country_data)
     return pd.DataFrame(predicted_medals, columns=['GOLD_count', 'SILVER_count', 'BRONZE_count'])
 
@@ -562,16 +572,16 @@ def predict_all_countries_next_edition(model, scaler, data, encoder, time_steps=
 def predict_medals_next_edition_svr(country, models, scaler, data, encoder, time_steps=3):
     country_encoded = encoder.transform([[country]])
     country_encoded_df = pd.DataFrame(country_encoded, columns=encoder.get_feature_names_out(['country_name']))
-    
+
     country_data = data[data['country_name'] == country].sort_values(by='slug_game').iloc[-time_steps:, 2:]
     country_data = pd.concat([country_data.reset_index(drop=True), country_encoded_df], axis=1)
-    
+
     if country_data.shape[0] < time_steps:
         raise ValueError(f"Not enough data for {country} to create a prediction with {time_steps} time steps.")
-    
+
     expected_features = scaler.n_features_in_
     current_features = country_data.shape[1]
-    
+
     if current_features < expected_features:
         missing_features = expected_features - current_features
         country_data = np.hstack([country_data.values, np.zeros((country_data.shape[0], missing_features))])
@@ -580,11 +590,11 @@ def predict_medals_next_edition_svr(country, models, scaler, data, encoder, time
 
     country_data = scaler.transform(country_data)
     country_data = country_data.reshape(1, -1)
-    
+
     predicted_gold = models['gold'].predict(country_data)
     predicted_silver = models['silver'].predict(country_data)
     predicted_bronze = models['bronze'].predict(country_data)
-    
+
     predicted_medals = np.stack([predicted_gold, predicted_silver, predicted_bronze], axis=1)
     return pd.DataFrame(predicted_medals, columns=['GOLD_count', 'SILVER_count', 'BRONZE_count'])
 
