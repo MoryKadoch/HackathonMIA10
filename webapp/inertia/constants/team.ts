@@ -1,5 +1,6 @@
-import AvatarAL from '@/public/assets/avatars/anthoine_lecoffre.svg';
+import AvatarAL from '@/public/assets/avatars/antoine_lecoffre.png';
 import AvatarCJ from '@/public/assets/avatars/clement_julia.svg';
+import AvatarMK from '@/public/assets/avatars/mory_kadoch.png';
 import AvatarNT from '@/public/assets/avatars/nicky_thaing.svg';
 import AvatarSL from '@/public/assets/avatars/sonny_lallier.svg';
 
@@ -30,7 +31,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: 'MORY KADOCH',
-    avatarUrl: AvatarSL,
+    avatarUrl: AvatarMK,
     networks: [
       {
         type: 'github',

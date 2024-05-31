@@ -10,13 +10,11 @@ export default class AnalysisController {
     const dataAnalysis = await this.analysis();
 
     return inertia.render('analysis', {
-      dataAnalysis
+      dataAnalysis,
     });
   }
 
   protected async analysis() {
-    let data = await this.restController.makeRequest({ path: '/analysis' });
-
-    return data;
+    return await this.restController.makeRequest({ path: '/analysis' });
   }
 }
