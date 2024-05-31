@@ -60,6 +60,9 @@ const Navbar = () => (
         <Link href={route('predictions').url}>Nos prédictions</Link>
       </li>
       <li>
+        <Link href={route('clustering').url}>Clustering</Link>
+      </li>
+      <li>
         <Link href={route('analysis').url}>Analyses de données</Link>
       </li>
       <li>

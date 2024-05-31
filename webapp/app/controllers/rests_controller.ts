@@ -1,7 +1,7 @@
 // import type { HttpContext } from '@adonisjs/core/http'
 
 export default class RestsController {
-  private apiBaseUrl = 'http://localhost:4000';
+  private apiBaseUrl = 'http://127.0.0.1:5000';
 
   async makeRequest({
     method = 'GET',
