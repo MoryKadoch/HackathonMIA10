@@ -13,19 +13,15 @@ import {
 type AnalysisPageProps = InferPageProps<AnalysisController, 'index'>;
 
 export default function AnalysisPage({
-  totalParticipations,
-  medalDistribution,
-  medalsByCountry,
-  evolutionOfMedalsTimeline,
+  dataAnalysis,
 }: AnalysisPageProps) {
   const tabs: Tab[] = [
     {
-      title: 'Médailles par pays',
+      title: 'Participation par athlète',
       content: (
         <SectionGraphBar
-          title="Nombre de médailles par pays (Top 10)"
-          data={medalsByCountry}
-          horizontal
+          title="Nombre de participations aux Jeux Olympiques par athlète"
+          data={dataAnalysis.participation_athlete}
         />
       ),
     },
@@ -34,25 +30,34 @@ export default function AnalysisPage({
       content: (
         <SectionGraphBar
           title="Répartition des médailles par type"
-          data={medalDistribution}
+          data={dataAnalysis.medals_type_count}
         />
       ),
     },
     {
-      title: 'Participations par athlète',
+      title: 'Médailles par pays',
       content: (
         <SectionGraphBar
-          title="Nombre de participations aux Jeux Olympiques par athlète"
-          data={totalParticipations}
+          title="Nombre de médailles par pays"
+          data={dataAnalysis.medals_country}
         />
       ),
     },
     {
-      title: 'Évolution médailles',
+      title: 'Nombre de médaille',
       content: (
-        <SectionGraphLine
-          title="Évolution du nombre de médailles au fil du temps"
-          data={evolutionOfMedalsTimeline}
+        <SectionGraphBar
+          title="Évolution du nombre de médaille au fil du temps"
+          data={dataAnalysis.medals_count_evolution}
+        />
+      ),
+    },
+    {
+      title: 'Performances par saison',
+      content: (
+        <SectionGraphBar
+          title="Comparaison des performances par saison"
+          data={dataAnalysis.season_perfomance}
         />
       ),
     },

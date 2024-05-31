@@ -422,6 +422,96 @@ def clustering():
 
     return scatter_json
 
+@app.route('/analysis')
+def analysis():
+    queries = {
+        'athletes': ('SELECT athlete_id, name, country_id, games_participations, athlete_year_birth FROM athletes', ['athlete_id', 'name', 'country_id', 'games_participations', 'athlete_year_birth']),
+        'country': ('SELECT country_name, country_code, country_id FROM country', ['country_name', 'country_code', 'country_id']),
+        'events': ('SELECT game_name, game_season, game_year, start_date_str, end_date_str, country_id FROM events', ['game_name', 'game_season', 'game_year', 'start_date_str', 'end_date_str', 'country_id']),
+        'medals': ('SELECT discipline_title, slug_game, event_title, event_gender, medal_type, participant_type, athlete_country_id, athlete_id FROM medals', ['discipline_title', 'slug_game', 'event_title', 'event_gender', 'medal_type', 'participant_type', 'athlete_country_id', 'athlete_id'])
+    }
+
+    athletes_df = fetch_data(conn, *queries['athletes'])
+    country_df = fetch_data(conn, *queries['country'])
+    hosts_df = fetch_data(conn, *queries['events'])
+    medals_df = fetch_data(conn, *queries['medals'])
+
+    medals = medals_df.merge(country_df, left_on='athlete_country_id', right_on='country_id', how='left')
+    results_df = medals.merge(athletes_df, on='athlete_id')
+    results_df['slug_game'] = results_df['slug_game'].str.replace('-', ' ').str.title()
+    combined_df = results_df.merge(hosts_df, left_on='slug_game', right_on='game_name', how='left')
+
+    medals_per_athlete = combined_df.groupby('name')['medal_type'].count()
+    medals_per_athlete = medals_per_athlete.sort_values(ascending=False)
+    athlete_games_details = combined_df[['name', 'game_name', 'game_year', 'medal_type']]
+
+    medals_count = combined_df['medal_type'].value_counts()
+    medals_by_country = combined_df['country_name'].value_counts().head(10)
+    medals_by_year = combined_df.groupby('game_year')['medal_type'].count()
+    medals_by_season = combined_df.groupby('game_season')['medal_type'].count()
+
+    bin_counts, bin_edges = np.histogram(athletes_df['games_participations'], bins=range(1, athletes_df['games_participations'].max() + 2))
+
+    participation_athlete = {
+        "labels": [str(int(edge)) for edge in bin_edges[:-1]],
+        "datasets": [{
+            "label": "Nombre d'athlètes",
+            "data": bin_counts.tolist(),
+            "backgroundColor": 'rgb(54, 162, 235)',
+        }]
+    }
+
+    medals_type_count = {
+        "labels": medals_count.index.tolist(),
+        "datasets": [{
+            "label": "Nombre de médailles",
+            "data": medals_count.values.tolist(),
+            "backgroundColor": ['rgb(255, 215, 0)', 'rgb(192, 192, 192)', 'rgb(205, 127, 50)']
+        }]
+    }
+
+    medals_country = {
+        "labels": medals_by_country.index.tolist(),
+        "datasets": [{
+            "label": "Nombre de médailles",
+            "data": medals_by_country.values.tolist(),
+            "backgroundColor": 'rgb(75, 192, 192)'
+        }]
+    }
+
+    medals_count_evolution = {
+       "labels": medals_by_year.index.tolist(),
+        "datasets": [{
+            "label": "Nombre de médailles",
+            "data": medals_by_year.values.tolist(),
+            "borderColor": 'rgb(54, 162, 235)',
+            "fill": False,
+            "tension": 0.1,
+            "pointBackgroundColor": 'rgb(54, 162, 235)'
+        }]
+    }
+
+    season_perfomance = {
+        "labels": medals_by_season.index.tolist(),
+        "datasets": [{
+            "label": "Nombre de médailles",
+            "data": medals_by_season.values.tolist(),
+            "backgroundColor": ['rgb(54, 162, 235)', 'rgb(75, 192, 192)']
+        }]
+    }
+
+    data = {
+        'participation_athlete': participation_athlete,
+        'medals_type_count': medals_type_count,
+        'medals_country': medals_country,
+        'medals_count_evolution': medals_count_evolution,
+        'season_perfomance': season_perfomance
+    }
+
+    data_json = json.dumps(data)
+
+    return data_json
+
 def predict_medals_next_edition(country, model, scaler, data, encoder, time_steps=3):
     # encodage du pays
     country_encoded = encoder.transform([[country]])
