@@ -67,7 +67,11 @@ export default function AnalysisPage({
     <ContentLayout>
       <Head title="Analyses de données" />
       <h1>Analyses de données</h1>
-      <p>Liste des données après analyse</p>
+      <p>
+        Voici la liste des données après le traitement et la réorganisation
+        nécessaires pour entraîner nos modèles d'IA avec des données cohérentes,
+        assurant ainsi la qualité et la pertinence de nos résultats.
+      </p>
       <Tabs tabs={tabs} />
     </ContentLayout>
   );
