@@ -1,6 +1,5 @@
 import type AnalysisController from '@/app/controllers/analysis_controller';
 import { InferPageProps } from '@adonisjs/inertia/types';
-import styled from '@emotion/styled';
 import { Head } from '@inertiajs/react';
 import { ChartData } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
@@ -12,11 +11,6 @@ import {
 } from '~/lib/generate_chart_options';
 
 type AnalysisPageProps = InferPageProps<AnalysisController, 'index'>;
-
-const Section = styled.section({
-  marginBlock: '1em',
-  borderBottom: '#dadce0',
-});
 
 export default function AnalysisPage({
   totalParticipations,
@@ -54,7 +48,7 @@ export default function AnalysisPage({
       ),
     },
     {
-      title: 'Section 4',
+      title: 'Évolution médailles',
       content: (
         <SectionGraphLine
           title="Évolution du nombre de médailles au fil du temps"
@@ -80,13 +74,11 @@ const SectionGraphBar = ({
 }: {
   data: ChartData<'bar'>;
 } & SectionGraphOptions) => (
-  <Section>
-    <Bar
-      options={generateSectionGraphOptions(options)}
-      data={data}
-      css={{ width: '100%!important' }}
-    />
-  </Section>
+  <Bar
+    options={generateSectionGraphOptions(options)}
+    data={data}
+    css={{ width: '100%!important' }}
+  />
 );
 
 const SectionGraphLine = ({
@@ -95,11 +87,9 @@ const SectionGraphLine = ({
 }: {
   data: ChartData<'line'>;
 } & SectionGraphOptions) => (
-  <Section>
-    <Line
-      options={generateSectionGraphOptions(options)}
-      data={data}
-      css={{ width: '100%!important' }}
-    />
-  </Section>
+  <Line
+    options={generateSectionGraphOptions(options)}
+    data={data}
+    css={{ width: '100%!important' }}
+  />
 );

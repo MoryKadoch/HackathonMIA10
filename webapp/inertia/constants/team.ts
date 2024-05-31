@@ -1,19 +1,26 @@
+import AvatarAL from '@/public/assets/avatars/anthoine_lecoffre.svg';
+import AvatarCJ from '@/public/assets/avatars/clement_julia.svg';
+import AvatarNT from '@/public/assets/avatars/nicky_thaing.svg';
 import AvatarSL from '@/public/assets/avatars/sonny_lallier.svg';
 
 export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Antoine LECOFFRE',
-    avatarUrl: AvatarSL,
+    avatarUrl: AvatarAL,
     networks: [
       {
         type: 'github',
         url: 'https://github.com/YukiLand',
       },
+      {
+        type: 'linkedin',
+        url: 'https://www.linkedin.com/in/antoine-lecoffre/',
+      },
     ],
   },
   {
     name: 'Clement JULIA',
-    avatarUrl: AvatarSL,
+    avatarUrl: AvatarCJ,
     networks: [
       {
         type: 'github',
@@ -33,7 +40,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: 'Nicky THAING',
-    avatarUrl: AvatarSL,
+    avatarUrl: AvatarNT,
     networks: [
       {
         type: 'github',

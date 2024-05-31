@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 import AccordionItem from '~/components/common/accordion/accordion_item';
 import AccordionWrapper from '~/components/common/accordion/accordion_wrapper';
-import { faqList } from '~/constants/faq_list';
+import { FAQ_LIST } from '~/constants/faq_list';
 import ContentLayout from '~/layout/content_layout';
 
 const FAQPage = () => (
@@ -13,7 +13,7 @@ const FAQPage = () => (
       questions les plus courantes concernant notre projet de hackathon.
     </p>
     <AccordionWrapper>
-      {faqList.map(({ header, content }) => (
+      {FAQ_LIST.map(({ header, content }) => (
         <AccordionItem header={header}>{content}</AccordionItem>
       ))}
     </AccordionWrapper>
